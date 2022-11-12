@@ -5,10 +5,10 @@ ARG GROUP_ID
 ARG USERNAME
 
 RUN if [ ${USER_ID:-0} -ne 0 ] && [ ${GROUP_ID:-0} -ne 0 ]; then \
-    groupadd -g ${GROUP_ID} ${USERNAME} &&\
-    useradd -l -u ${USER_ID} -g ${USERNAME} ${USERNAME} &&\
-    mkdir -p /home/${USERNAME} &&\
-    install -d -m 0755 -o ${USERNAME} -g ${USERNAME} /home/${USERNAME} &&\
+    groupadd -g ${GROUP_ID} ${USERNAME} && \
+    useradd -l -u ${USER_ID} -g ${USERNAME} ${USERNAME} && \
+    mkdir -p /home/${USERNAME} && \
+    install -d -m 0755 -o ${USERNAME} -g ${USERNAME} /home/${USERNAME} && \
     chown -R ${USER_ID}:${GROUP_ID} /home/${USERNAME} \
 ;fi
 
